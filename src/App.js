@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import awsconfig from './aws-exports';
+import { listContents } from './graphql/queries'
 
-function App() {
+Amplify.configure(awsconfig);
+
+const App = () => {
+  const [content, setContent] = useState()
+
+  const fetchContent = async () => {
+    try {
+      const content = await API.graphql(graphqlOperation(listContents))
+      setContent( content.data.listContents.items[0])
+    } catch (error) { console.log('error fetching todos: ', error) }
+  }
+
+  useEffect(() => {
+    fetchContent()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{content?.headerTitle}</h1>
+      <h3>{content?.headerSubtitle}</h3>
     </div>
   );
 }
