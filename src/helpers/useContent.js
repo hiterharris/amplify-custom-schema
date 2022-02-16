@@ -3,18 +3,19 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { listContents } from '../graphql/queries'
 
 const useContent = () => {
-    const [content, setContent] = useState()
+    const [data, setData] = useState()
+
+    const fetchData = async () => {
+        const res = await API.graphql(graphqlOperation(listContents))
+        setData( res.data.listContents.items[0])
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await API.graphql(graphqlOperation(listContents))
-            setContent( data.data.listContents.items[0])
-        }
         fetchData()
     }, [])
 
 
-    return { content }
+    return { data, fetchData }
 }
 
   export default useContent
