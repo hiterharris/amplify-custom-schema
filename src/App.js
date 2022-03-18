@@ -7,7 +7,6 @@ import '@aws-amplify/ui-react/styles.css';
 
 const App = ({ signOut, user }) => {
   const { data, fetchData } = useContent()
-  console.log(user)
   
   return (
     <div className="App">
