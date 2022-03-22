@@ -6,8 +6,9 @@ import * as mutations from '../graphql/mutations';
 const UpdateModal = props => {
   const { content, fetchData } = props;
   const [contentUpdate, setContentUpdate] = useState({
+    id: 1,
     headerTitle: '',
-    headerSubtitle: ''
+    headerSubtitle: ''    
   })
 
   const handleSubmit = async () => {

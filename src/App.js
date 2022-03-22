@@ -6,9 +6,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 const App = ({ signOut, user }) => {
-  const { data, fetchData } = useContent()
-  console.log(user)
-  
+  const { data, fetchData } = useContent()  
   return (
     <div className="App">
       <h1>Hello {user.attributes.email}</h1>
