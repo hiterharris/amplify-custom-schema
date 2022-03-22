@@ -23,8 +23,8 @@ const UpdateModal = props => {
   
   return (
     <div className="UpdateModal">
-        <input type='text' name='headerTitle' placeholder={content?.headerTitle} onChange={e => setContentUpdate({...contentUpdate, headerTitle: e.target.value})} />
-        <input type='text' name='headerSubtitle' placeholder={content?.headerSubtitle} onChange={e => setContentUpdate({...contentUpdate, headerSubtitle: e.target.value})} />
+        <input type='text' name='headerTitle' placeholder='Title' onChange={e => setContentUpdate({...contentUpdate, headerTitle: e.target.value})} />
+        <input type='text' name='headerSubtitle' placeholder='Subtitle' onChange={e => setContentUpdate({...contentUpdate, headerSubtitle: e.target.value})} />
         <button onClick={() => handleSubmit()}>Update</button>
     </div>
   );
